@@ -1,20 +1,28 @@
 from consts import ABC
-import matplotlib.pyplot as plt
-
+from viz import plot_dict_as_bar_chart
+from symmetric_ciphers import caesar_cipher, vigenere_cipher
 def main():
+    with open('text.txt', 'r') as f:
+        text = f.read()
+    
+    # freq = get_letters_frequency(text)
+    # print(freq)
+    # plot_dict_as_bar_chart(freq)
+    ciphertext = caesar_cipher(text, 3)
+    freq = get_letters_frequency(ciphertext)
+    print(freq)
+    plot_dict_as_bar_chart(freq)
+
+def get_letters_frequency(text):
     frequency_dict = {}
     for letter in ABC:
         frequency_dict[letter] = 0
 
-    with open('text.txt', 'r') as f:
-        for line in f:
-            for char in line.lower():
-                if char in ABC:
-                    frequency_dict[char] += 1
+    for char in text.lower():
+        if char in ABC:
+            frequency_dict[char] += 1
 
-    print(frequency_dict)
-    plt.bar(*zip(*frequency_dict.items()))
-    plt.show(frequency_dict)
+    return frequency_dict
 
 if __name__ == "__main__":
     main()
