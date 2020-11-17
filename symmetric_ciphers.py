@@ -1,5 +1,5 @@
 
-abc = 'abcdefghijklmnopqrstuvwxyz'
+from consts import ABC
 
 def main():
     key = 3
@@ -15,13 +15,13 @@ def main():
 def caesar_cipher(m, k):
     c = ''
     for char in m:
-        c += abc[(abc.index(char) + k) % 26]
+        c += ABC[(ABC.index(char) + k) % 26]
     return c
 
 def atbash_cipher(m):
     c = ''
     for char in m:
-        c += abc[len(abc) - abc.index(char) - 1]
+        c += ABC[len(ABC) - ABC.index(char) - 1]
     return c
 
 if __name__ == "__main__":
